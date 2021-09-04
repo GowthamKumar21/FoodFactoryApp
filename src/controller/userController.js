@@ -4,7 +4,7 @@ export const userLogin = (req, res) => {
   User.findOne({
     $and: [{ email: req.body.email }, { password: req.body.password }],
   }).exec((error, result) => {
-    if (error) {
+    if (error || result == null) {
       res.send("Incorrect username or password." + error);
     } else {
       res.send("User login successful");
@@ -61,6 +61,19 @@ export const updateUserStatus = (req, res) => {
       res.send("Error in updating User Status:" + error);
     } else {
       res.send("User Status updated");
+    }
+  });
+};
+
+export const deactivateUser = (req, res) => {
+  User.updateOne(
+    { email: req.body.email },
+    { $set: { status: "Deactive" } }
+  ).exec((error, result) => {
+    if (error) {
+      res.send("Error in deactivating User" + error);
+    } else {
+      res.send("User deactivated");
     }
   });
 };

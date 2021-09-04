@@ -2,7 +2,7 @@ import Food from "../model/foodSchema";
 
 export const getFood = (req, res) => {
   Food.findOne({ lotNumber: req.params.lotNumber }).exec((error, result) => {
-    if (error) {
+    if (error || result == null) {
       res.send("Error in getting Food :" + error);
     } else {
       res.send("Food found " + result);
@@ -39,6 +39,24 @@ export const deleteFood = (req, res) => {
       res.send("Error in deleting Food :" + error);
     } else {
       res.send("Food deleted");
+    }
+  });
+};
+
+export const getHighExpensiveFoods = (req, res) => {
+  let HighExpensiveFoods = [];
+  Food.find({}).exec((error, result) => {
+    if (error || result == null) {
+      res.send("Error in getting Foods :" + error);
+    } else {
+      HighExpensiveFoods = result.filter(
+        (food) => food.costOfProduction > food.sellingCost
+      );
+      res.send(
+        HighExpensiveFoods.length +
+          " Foods have High Production Cost " +
+          HighExpensiveFoods
+      );
     }
   });
 };

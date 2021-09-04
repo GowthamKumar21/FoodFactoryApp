@@ -3,10 +3,41 @@ import Ingredients from "../model/ingredientsSchema";
 export const getIngredients = (req, res) => {
   Ingredients.findOne({ lotNumber: req.params.lotNumber }).exec(
     (error, result) => {
-      if (error) {
+      if (error || result == null) {
         res.send("Error in getting Ingredients :" + error);
       } else {
         res.send("Ingredients found " + result);
+      }
+    }
+  );
+};
+
+export const getLessAvailableIngredients = (req, res) => {
+  let lessAvailable = [];
+  Ingredients.find({}).exec((error, result) => {
+    if (error || result == null) {
+      res.send("Error in getting Ingredients :" + error);
+    } else {
+      lessAvailable = result.filter(
+        (Ingredients) =>
+          Ingredients.availableQuantity < Ingredients.thresholdQuantity
+      );
+      res.send(
+        lessAvailable.length +
+          " Ingredients have less Availability " +
+          lessAvailable
+      );
+    }
+  });
+};
+
+export const getIngredientsOfVendor = (req, res) => {
+  Ingredients.find({ vendorName: req.params.vendorName }).exec(
+    (error, result) => {
+      if (error || result == null) {
+        res.send("Error in getting Ingredients :" + error);
+      } else {
+        res.send("Vendor have " + result.length + " Ingredients " + result);
       }
     }
   );

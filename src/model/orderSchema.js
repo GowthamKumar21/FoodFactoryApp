@@ -1,4 +1,8 @@
+import User from "../model/userSchema";
+import Food from "../model/foodSchema";
 const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
 
 const orderSchema = new mongoose.Schema(
   {
@@ -7,6 +11,8 @@ const orderSchema = new mongoose.Schema(
     orderDate: Date,
     dateOfdelivery: Date,
     modeOfTransport: String,
+    user: { type: Schema.Types.ObjectId, ref: User, required: false },
+    food: { type: Schema.Types.ObjectId, ref: Food, required: false },
   },
   { versionKey: false }
 );

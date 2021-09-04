@@ -6,5 +6,6 @@ router.post("/signup", userController.userSignup);
 router.put("/updatePassword", userController.updatePassword);
 router.put("/updateUser", userController.updateUser);
 router.put("/updateUserStatus", userController.updateUserStatus);
+router.put("/deactivateUser", userController.deactivateUser);
 
 module.exports = router;
