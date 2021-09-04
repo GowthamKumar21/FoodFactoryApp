@@ -1,6 +1,8 @@
 import User from "../model/userSchema";
+var md5 = require("md5");
 
 export const userLogin = (req, res) => {
+  req.body.password = md5(req.body.password);
   User.findOne({
     $and: [{ email: req.body.email }, { password: req.body.password }],
   }).exec((error, result) => {
@@ -15,6 +17,7 @@ export const userLogin = (req, res) => {
 export const userSignup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((error, result) => {
     if (error === null) {
+      req.body.password = md5(req.body.password);
       const user = new User(req.body);
       user.save((error, result) => {
         if (error) res.send("Error in saving User :" + error);
@@ -27,6 +30,7 @@ export const userSignup = (req, res) => {
 };
 
 export const updatePassword = (req, res) => {
+  req.body.password = md5(req.body.password);
   User.updateOne(
     { email: req.body.email },
     { $set: { password: req.body.password } }
