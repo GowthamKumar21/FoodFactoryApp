@@ -56,30 +56,30 @@ It’s built with **Express.js**, **MongoDB**, and **Mongoose**.
 
 src/
 │
-├─ config/ # App and DB configurations
-│ ├─ express.js # Express app setup
-│ ├─ mongoose.js # MongoDB connection setup
-│ └─ router.js # Router template
+├─ config/                  # App and DB configurations
+│   ├─ express.js           # Express app setup
+│   ├─ mongoose.js          # MongoDB connection setup
+│   └─ router.js            # Router template
 │
-├─ controller/ # Request handlers
-│ ├─ foodController.js
-│ ├─ ingredientsController.js
-│ ├─ orderController.js
-│ └─ userController.js
+├─ controller/              # Request handlers
+│   ├─ foodController.js
+│   ├─ ingredientsController.js
+│   ├─ orderController.js
+│   └─ userController.js
 │
-├─ model/ # MongoDB Schemas
-│ ├─ foodSchema.js
-│ ├─ ingredientsSchema.js
-│ ├─ orderSchema.js
-│ └─ userSchema.js
+├─ model/                   # MongoDB Schemas
+│   ├─ foodSchema.js
+│   ├─ ingredientsSchema.js
+│   ├─ orderSchema.js
+│   └─ userSchema.js
 │
-├─ routes/ # Express routes
-│ ├─ foodRoutes.js
-│ ├─ ingredientsRoutes.js
-│ ├─ orderRoutes.js
-│ └─ userRoutes.js
+├─ routes/                  # Express routes
+│   ├─ foodRoutes.js
+│   ├─ ingredientsRoutes.js
+│   ├─ orderRoutes.js
+│   └─ userRoutes.js
 │
-└─ index.js # Entry point
+└─ index.js                 # Entry point
 
 ---
 
