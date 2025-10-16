@@ -52,8 +52,7 @@ It’s built with **Express.js**, **MongoDB**, and **Mongoose**.
 
 ---
 
-## Project Structure
-
+```
 src/
 │
 ├─ config/                  # App and DB configurations
@@ -80,6 +79,7 @@ src/
 │   └─ userRoutes.js
 │
 └─ index.js                 # Entry point
+```
 
 ---
 
